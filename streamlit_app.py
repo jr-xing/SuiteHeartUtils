@@ -117,9 +117,9 @@ if clear_button:
     shutil.rmtree(vis_rootdir)
 
     # Remove all *.mat files
-    for file in Path(".").rglob("*.mat"):
-        # file.unlink()
-        os.remove(file)
+    for file in Path(".").glob("*.mat"):
+        file.unlink()
+        # os.remove(file)
         st.write(f"File {file} removed")
     st.write(f"Files cleared")
 
