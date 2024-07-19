@@ -1,6 +1,6 @@
 import numpy as np
 from skimage.draw import polygon
-import cv2
+# import cv2
 import copy
 def generate_binary_mask_from_contour(contour, image_shape, implementation='skimg'):
     """
@@ -18,10 +18,11 @@ def generate_binary_mask_from_contour(contour, image_shape, implementation='skim
         rr, cc = polygon(contour[:, 1], contour[:, 0], mask.shape)
         mask[rr, cc] = 255
     elif implementation in ['opencv', 'cv2']:
-        mask = np.zeros(image_shape, dtype=np.uint8)
-        c = copy.deepcopy(contour)
-        c[:, [0, 1]] = c[:, [1, 0]]
-        cv2.drawContours(mask, [c.astype(int)], 0, 255, -1)
+        raise NotImplementedError
+        # mask = np.zeros(image_shape, dtype=np.uint8)
+        # c = copy.deepcopy(contour)
+        # c[:, [0, 1]] = c[:, [1, 0]]
+        # cv2.drawContours(mask, [c.astype(int)], 0, 255, -1)
     return mask
 
 def generate_binary_masks_from_contour_seq(contours, image_shape, implementation='skimg', centering=True, ori_center=None):
