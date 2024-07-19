@@ -1,8 +1,9 @@
 .streamlit/secrets.toml
 
 debug_data/
-debug_notebooks/
+# debug_notebooks/
 analyzed_files/
+*/.mat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
