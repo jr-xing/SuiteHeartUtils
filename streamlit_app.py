@@ -11,9 +11,9 @@ import scipy.io as sio
 st.title("🫀 suiteHEART® Data Utility")
 st.markdown(
     '''
-    Tools to analyze suiteHEART® data and prepare it for [EpsteinLabUVA/StrainNet](https://github.com/EpsteinLabUVA/StrainNet) training.
-    Developed by [Jiarui Xing](https://scholar.google.com/citations?user=G_0diKUAAAAJ&hl=en), PhD, Computer Engineering, University of Virginia,
-    in collaboration with the Epstein Lab at the University of Virginia.
+    Tools to analyze suiteHEART® data and prepare it for [EpsteinLabUVA/StrainNet](https://github.com/EpsteinLabUVA/StrainNet) training.  
+    Developed by [Jiarui Xing](https://scholar.google.com/citations?user=G_0diKUAAAAJ&hl=en), PhD Student, [MIA lab](https://www.cs.virginia.edu/~mz8rr/research.html)@University of Virginia,  
+    in collaboration with the [Epstein Lab](https://engineering.virginia.edu/faculty/frederick-h-epstein)@University of Virginia.
     '''
 )
 
