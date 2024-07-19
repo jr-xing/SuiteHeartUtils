@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from utils.suiteHeart_to_StrainNet import prepare_StrainNet_data_from_SuiteHeart
 
+import os
 import copy
 import shutil
 import scipy.io as sio
@@ -76,7 +77,7 @@ uploaded_file = st.file_uploader(
     accept_multiple_files=False,
     key='uploaded_file',
     help='Please upload a SuiteHeart exported `.mat` file')
-st.write(f"Uploaded file: {uploaded_file}")
+# st.write(f"Uploaded file: {uploaded_file}")
 # Move the uploaded file to ./analyzed_files/uploads/
 upload_rootdir = Path("./analyzed_files/uploads")
 upload_rootdir.mkdir(parents=True, exist_ok=True)
@@ -115,9 +116,10 @@ if clear_button:
     shutil.rmtree(zip_rootdir)
     shutil.rmtree(vis_rootdir)
 
-    # Remove all ./*.mat files
-    for file in Path('.').glob('*.mat'):
-        file.unlink()
+    # Remove all *.mat files
+    for file in Path(".").rglob("*.mat"):
+        # file.unlink()
+        os.remove(file)
         st.write(f"File {file} removed")
     st.write(f"Files cleared")
 
