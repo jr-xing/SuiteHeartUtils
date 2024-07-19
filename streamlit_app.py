@@ -31,6 +31,17 @@ analysis_button = st.button('Analyze', key='analyze_button', disabled=uploaded_f
 # def finished_analysis(b):
 #     st.session_state["finished_analysis"] = b
 # download_button = st.button('Download analysis result', key='download_button', disabled=~st.session_state.get("finished_analysis", False), help='Press the button to download the analysis result')
+# https://ploomber.io/blog/streamlit_exe/
+# https://wqmoran.com/streamlit-axioserror-status-code-403-solution/
+
+# Show button to clear all files under ./analyzed_files/
+slice_rootdir = Path("./analyzed_files/raw")
+zip_rootdir = Path(f"./analyzed_files/zip")
+clear_button = st.button('Clear all files', key='clear_button', help='Press the button to clear all analyzed files')
+if clear_button:
+    shutil.rmtree(slice_rootdir)
+    shutil.rmtree(zip_rootdir)
+    st.write(f"Files cleared")
 
 if uploaded_file is not None:
     # Make a local copy of the uploaded file
@@ -120,7 +131,7 @@ if uploaded_file is not None:
         
         # Save each of the analysis results to a .mat file
         saved_filenames = []
-        slice_rootdir = Path("./analyzed_files/raw")
+        
         for valid_cine_slice_idx, valid_cine_slice in enumerate(valid_cine_slices):
             # make a subdir for each slice based on upload filename + slice index
             slice_subdir = slice_rootdir / Path(f"{uploaded_filename}_{valid_cine_slice_idx}")
@@ -134,8 +145,7 @@ if uploaded_file is not None:
             saved_filenames.append(slice_input_filename)
         
         # zip all the saved files
-        zip_base_filename = Path(f"./analyzed_files/zip/{uploaded_filename}")
-        zip_rootdir = Path(f"./analyzed_files/zip")
+        zip_base_filename = Path(f"./analyzed_files/zip/{uploaded_filename}")        
         shutil.make_archive(
             base_name = zip_base_filename, 
             format = 'zip', 
@@ -157,13 +167,8 @@ if uploaded_file is not None:
                 label="Download data",
                 data=file,
                 file_name=f"{zip_base_filename.stem}.zip",
-                # mime="text/csv",
+                mime="application/zip",
             )
 
-        # Show button to clear all files under ./analyzed_files/
-        clear_button = st.button('Clear all analyzed files', key='clear_button', help='Press the button to clear all analyzed files')
-        if clear_button:
-            shutil.rmtree(slice_rootdir)
-            shutil.rmtree(zip_rootdir)
-            st.write(f"Files cleared")
+        
 
