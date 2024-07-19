@@ -8,16 +8,16 @@ import copy
 import shutil
 import scipy.io as sio
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
+st.title("🫀 suiteHEART® Data Utility")
+st.markdown(
+    "Tools to analyze suiteHEART® data and prepare it for [EpsteinLabUVA/StrainNet](https://github.com/EpsteinLabUVA/StrainNet) training."
 )
 
 
-st.subheader('Number of pickups by hour')
+# st.subheader('Number of pickups by hour')
 
 # Create a 64x64 image of random Gaussian noise
-random_noise = np.random.randn(64, 64)
+# random_noise = np.random.randn(64, 64)
 
 
 uploaded_file = st.file_uploader("Choose a SuiteHeart exported `.mat` file")
