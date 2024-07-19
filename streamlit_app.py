@@ -160,3 +160,10 @@ if uploaded_file is not None:
                 # mime="text/csv",
             )
 
+        # Show button to clear all files under ./analyzed_files/
+        clear_button = st.button('Clear all analyzed files', key='clear_button', help='Press the button to clear all analyzed files')
+        if clear_button:
+            shutil.rmtree(slice_rootdir)
+            shutil.rmtree(zip_rootdir)
+            st.write(f"Files cleared")
+
